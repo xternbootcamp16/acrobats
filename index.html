@@ -14,22 +14,24 @@
       <button type="submit">Sign Me Up</button>
     </form>
 
-    <form ng-submit="updateAcrobat()" ng-show="editing">
+    <form ng-submit="updateAcrobat()" ng-show="editing" ng-cloak>
       <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
       <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
       <button type="submit">Stop Editing</button>
     </form>
 
-    <div ng-show="acrobat.errors.length">
+    <div ng-show="acrobat.errors.length" ng-cloak>
       Oops! Something went wrong.
-      <ul><li ng-repeat="error in acrobat.errors track by $index">{{ error }}</li></ul>
+      <ul><li ng-repeat="error in acrobat.errors track by $index">
+        <span ng-bind="error"></span>
+      </li></ul>
     </div>
 
     <div>
       <h2>Member List</h2>
-      <ul>
+      <ul ng-cloak>
         <li ng-repeat="acrobat in acrobats track by $index">
-          The Fabulous {{ acrobat.name }}: Master of {{ acrobat.act }}
+          The Fabulous <span ng-bind="acrobat.name"></span>: Master of <span ng-bind="acrobat.act"></span>
           <a href="#" ng-click="editAcrobat(acrobat)">(edit)</a>
           <a href="#" ng-click="removeAcrobat($index)">(remove)</a>
         </li>
