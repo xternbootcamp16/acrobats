@@ -12,6 +12,9 @@
           $scope.acrobats.push($scope.acrobatName);
           $scope.acrobatName = '';
         }
+        $scope.removeLastAcrobat = function() {
+          $scope.acrobats.pop();
+        }
       });
     </script>
   </head>
@@ -20,6 +23,7 @@
     <form ng-submit="addAcrobat()">
       <input type="text" ng-model="acrobatName">
       <button type="submit">Sign Me Up</button>
+      <a href="#" ng-click="removeLastAcrobat()">Remove last acrobat</a>
     </form>
 
     <div>
