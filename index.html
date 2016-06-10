@@ -7,10 +7,14 @@
     <script>
       angular.module('acrobatApp', [])
       .controller('AcrobatController', function($scope) {
-        $scope.acrobats = ['Jordan', 'Edward', 'Miiiitch'];
+        $scope.acrobats = [
+          { name: 'Jordan', act: 'trapeze' },
+          { name: 'Katelyn', act: 'high wire' }
+        ];
+        $scope.acrobat = {};
         $scope.addAcrobat = function() {
-          $scope.acrobats.push($scope.acrobatName);
-          $scope.acrobatName = '';
+          $scope.acrobats.push($scope.acrobat);
+          $scope.acrobat = {};
         }
         $scope.removeLastAcrobat = function() {
           $scope.acrobats.pop();
@@ -21,7 +25,8 @@
   <body ng-controller="AcrobatController">
     <h1>League of Acrobats</h1>
     <form ng-submit="addAcrobat()">
-      <input type="text" ng-model="acrobatName">
+      <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
+      <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
       <button type="submit">Sign Me Up</button>
       <a href="#" ng-click="removeLastAcrobat()">Remove last acrobat</a>
     </form>
@@ -29,7 +34,9 @@
     <div>
       <h2>Member List</h2>
       <ul>
-        <li ng-repeat="acrobat in acrobats">{{ acrobat }}</li>
+        <li ng-repeat="acrobat in acrobats track by $index">
+          The Fabulous {{ acrobat.name }}: Master of {{ acrobat.act }}
+        </li>
       </ul>
     </div>
   </body>
