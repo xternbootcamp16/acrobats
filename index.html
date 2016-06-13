@@ -31,6 +31,9 @@
             $scope.editing = false;
             $scope.acrobat = {};
           }
+          $scope.removeAcrobat = function(index) {
+            $scope.acrobats.splice(index, 1);
+          }
         });
       })();
     </script>
@@ -42,7 +45,6 @@
       <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
       <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
       <button type="submit">Sign Me Up</button>
-      <a href="#" ng-click="removeLastPerson()">Remove last person</a>
     </form>
 
     <form ng-submit="updateAcrobat()" ng-show="editing">
@@ -57,6 +59,7 @@
         <li ng-repeat="acrobat in acrobats">
           {{ acrobat.name }}, Master of {{ acrobat.act }}
           <a href="#" ng-click="editAcrobat(acrobat)">(edit)</a>
+          <a href="#" ng-click="removeAcrobat($index)">(remove)</a>
         </li>
       </ul>
     </div>
