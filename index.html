@@ -41,7 +41,7 @@
   <body ng-controller="AcrobatController">
     <h1>League of Acrobats</h1>
 
-    <form ng-submit="addAcrobat()" ng-hide="editing">
+    <form ng-submit="addAcrobat()" ng-show="!editing">
       <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
       <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
       <button type="submit">Sign Me Up</button>
@@ -59,7 +59,7 @@
         <li ng-repeat="acrobat in acrobats track by $index">
           {{ acrobat.name }}, Master of {{ acrobat.act }}
           <a href="#" ng-click="editAcrobat(acrobat)">(edit)</a>
-          <a href="#" ng-click="removeAcrobat($index)">(remove)</a>
+          <a href="#" ng-show="!editing" ng-click="removeAcrobat($index)">(remove)</a>
         </li>
       </ul>
     </div>
