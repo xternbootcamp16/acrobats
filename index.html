@@ -15,16 +15,21 @@
             { name: 'Jenn', act: 'showing up' },
             { name: 'Josh', act: 'flight'}
           ];
-          $scope.acrobat = { name: '', act: '' };
+          $scope.acrobat = {};
           $scope.addAcrobat = function() {
             $scope.acrobats.push($scope.acrobat);
-            $scope.acrobat = { name: '', act: '' };
+            $scope.acrobat = {};
           }
           $scope.removeLastPerson = function() {
             $scope.acrobats.pop();
           }
           $scope.editAcrobat = function(acrobat) {
+            $scope.editing = true;
             $scope.acrobat = acrobat;
+          }
+          $scope.updateAcrobat = function() {
+            $scope.editing = false;
+            $scope.acrobat = {};
           }
         });
       })();
@@ -33,11 +38,17 @@
   <body ng-controller="AcrobatController">
     <h1>League of Acrobats</h1>
 
-    <form ng-submit="addAcrobat()">
+    <form ng-submit="addAcrobat()" ng-hide="editing">
       <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
       <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
       <button type="submit">Sign Me Up</button>
       <a href="#" ng-click="removeLastPerson()">Remove last person</a>
+    </form>
+
+    <form ng-submit="updateAcrobat()" ng-show="editing">
+      <input type="text" ng-model="acrobat.name" placeholder="Enter your name">
+      <input type="text" ng-model="acrobat.act" placeholder="What's your act?">
+      <button type="submit">Stop Editing</button>
     </form>
 
     <div class="target">
