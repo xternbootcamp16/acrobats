@@ -56,7 +56,7 @@
     <div class="target">
       <h2>League Members</h2>
       <ul>
-        <li ng-repeat="acrobat in acrobats">
+        <li ng-repeat="acrobat in acrobats track by $index">
           {{ acrobat.name }}, Master of {{ acrobat.act }}
           <a href="#" ng-click="editAcrobat(acrobat)">(edit)</a>
           <a href="#" ng-click="removeAcrobat($index)">(remove)</a>
